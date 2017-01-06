@@ -1,7 +1,7 @@
 // -------------------------------------------------------------
-// a simple Arduino Teensy 3.1/3.2/3.6 CAN driver
+// a simple Arduino Teensy 3.1/3.2/3.5/3.6 CAN driver
 // by teachop
-// dual CAN support for MK66FX1M0 by Pawelsky
+// dual CAN support for MK66FX1M0 and updates for MK64FX512 by Pawelsky
 //
 #ifndef __FLEXCAN_H__
 #define __FLEXCAN_H__

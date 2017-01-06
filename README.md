@@ -9,7 +9,7 @@ When the FlexCAN object is constructed on Teensy 3.1/3.2, Arduino pins Digital 3
 
 Similarily on Teensy 3.5, the same Arduino pins Digital 3 and Digital 4 are assigned to CAN functions TX and RX.
 
-![Teensy 3.5 CAN Pins, Digital3=TX, Digital4=RX](/FlexCAN_pins35.png)
+![Teensy 3.5 CAN Pins, Digital3=TX, Digital4=RX](/FlexCAN_pins_35.png)
 
 On Teensy 3.6 it is possible to to specify the **id** parameter and select whether CAN0 or CAN1 shall be used. For CAN0 Arduino pins Digital 3 and Digital 4 are assigned to CAN functions TX and RX. For CAN1 Arduino pins Digital 34 and Digital 33 are assigned to CAN functions TX and RX.
 

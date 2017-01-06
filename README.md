@@ -3,17 +3,17 @@
 ###Introduction
 FlexCAN is a serial communication driver for the CAN peripherial built into the Teensy CPUs. Versions 3.1, 3.2 and 3.5 of the board support single CAN0 controller while version 3.6 supports dual CAN0/CAN1 controllers.  The driver is organized in the Arduino library format.
 
-When the FlexCAN object is constructed on Teensy 3.1/3.2, Arduino pins Digital 3 and Digital 4 are assigned to CAN functions TX and RX.
+When the FlexCAN object is constructed on Teensy 3.1/3.2, Arduino pins Digital 3 and Digital 4 (or alternateively Digital 32 and Digital 25) are assigned to CAN functions TX and RX.
 
-![Teensy 3.1/3.2 CAN Pins, Digital3=TX, Digital4=RX](/FlexCAN_pins.png)
+![Teensy 3.1/3.2 CAN Pins, Digital3=TX, Digital4=RX](/FlexCAN_pins.png) ![Teensy 3.1/3.2 Alternative CAN Pins, Digital32=TX, Digital25=RX](/FlexCAN_pins_alt.png)
 
-Similarily on Teensy 3.5, the same Arduino pins Digital 3 and Digital 4 are assigned to CAN functions TX and RX.
+Similarily on Teensy 3.5, the same Arduino pins Digital 3 and Digital 4 (or alternateively Digital 29 and Digital 30) are assigned to CAN functions TX and RX.
 
-![Teensy 3.5 CAN Pins, Digital3=TX, Digital4=RX](/FlexCAN_pins_35.png)
+![Teensy 3.5 CAN Pins, Digital3=TX, Digital4=RX (or alternatively Digital29=TX, Digital30=RX)](/FlexCAN_pins_35.png)
 
-On Teensy 3.6 it is possible to to specify the **id** parameter and select whether CAN0 or CAN1 shall be used. For CAN0 Arduino pins Digital 3 and Digital 4 are assigned to CAN functions TX and RX. For CAN1 Arduino pins Digital 34 and Digital 33 are assigned to CAN functions TX and RX.
+On Teensy 3.6 it is possible to to specify the **id** parameter and select whether CAN0 or CAN1 shall be used. For CAN0 Arduino pins Digital 3 and Digital 4 (or alternateively Digital 29 and Digital 30) are assigned to CAN functions TX and RX. For CAN1 Arduino pins Digital 34 and Digital 33 are assigned to CAN functions TX and RX.
 
-![Teensy 3.6 CAN Pins, CAN0: Digital3=TX and Digital4=RX, CAN1: Digital34=TX and Digital33=RX](/FlexCAN_pins_36.png)
+![Teensy 3.6 CAN Pins, CAN0: Digital3=TX and Digital4=RX (or alternatively Digital29=TX, Digital30=RX), CAN1: Digital34=TX and Digital33=RX](/FlexCAN_pins_36.png)
 
 CAN RX and TX pins should be wired to a 3.3V CAN transceiver TXD and RXD respectively to allow connection of the Teensy 3.1/3.2/3.5/3.6 to a CAN network.
 

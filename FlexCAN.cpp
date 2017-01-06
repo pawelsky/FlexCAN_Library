@@ -32,7 +32,7 @@ FlexCAN::FlexCAN(uint32_t baud, uint8_t id, uint8_t txAlt, uint8_t rxAlt)
   // set up the pins
   if(flexcanBase == FLEXCAN0_BASE)
   {
-#ifdef __MK66FX1M0__
+#if defined(__MK66FX1M0__) || defined(__MK64FX512__)
     //  3=PTA12=CAN0_TX,  4=PTA13=CAN0_RX (default)
     // 29=PTB18=CAN0_TX, 30=PTB19=CAN0_RX (alternative)
     if(txAlt == 1) CORE_PIN29_CONFIG = PORT_PCR_MUX(2); else CORE_PIN3_CONFIG = PORT_PCR_MUX(2); 

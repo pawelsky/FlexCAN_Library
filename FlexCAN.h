@@ -11,6 +11,7 @@
 typedef struct CAN_message_t {
   uint32_t id; // can identifier
   uint8_t ext; // identifier is extended
+  uint8_t rtr; // remote transmission request packet type
   uint8_t len; // length of data
   uint16_t timeout; // milliseconds, zero will disable waiting
   uint8_t buf[8];

@@ -184,6 +184,7 @@ int FlexCAN::read(CAN_message_t &msg)
   // get identifier and dlc
   msg.len = FLEXCAN_get_length(FLEXCANb_MBn_CS(flexcanBase, rxb));
   msg.ext = (FLEXCANb_MBn_CS(flexcanBase, rxb) & FLEXCAN_MB_CS_IDE)? 1:0;
+  msg.rtr = (FLEXCANb_MBn_CS(flexcanBase, rxb) & FLEXCAN_MB_CS_RTR)? 1:0;
   msg.id  = (FLEXCANb_MBn_ID(flexcanBase, rxb) & FLEXCAN_MB_ID_EXT_MASK);
   if(!msg.ext) {
     msg.id >>= FLEXCAN_MB_ID_STD_BIT_NO;
@@ -256,11 +257,21 @@ int FlexCAN::write(const CAN_message_t &msg)
   FLEXCANb_MBn_WORD0(flexcanBase, buffer) = (msg.buf[0]<<24)|(msg.buf[1]<<16)|(msg.buf[2]<<8)|msg.buf[3];
   FLEXCANb_MBn_WORD1(flexcanBase, buffer) = (msg.buf[4]<<24)|(msg.buf[5]<<16)|(msg.buf[6]<<8)|msg.buf[7];
   if(msg.ext) {
-    FLEXCANb_MBn_CS(flexcanBase, buffer) = FLEXCAN_MB_CS_CODE(FLEXCAN_MB_CODE_TX_ONCE)
+    if(msg.rtr) {
+      FLEXCANb_MBn_CS(flexcanBase, buffer) = FLEXCAN_MB_CS_CODE(FLEXCAN_MB_CODE_TX_ONCE)
+                                         | FLEXCAN_MB_CS_LENGTH(msg.len) | FLEXCAN_MB_CS_SRR | FLEXCAN_MB_CS_IDE | FLEXCAN_MB_CS_RTR;
+    } else {
+      FLEXCANb_MBn_CS(flexcanBase, buffer) = FLEXCAN_MB_CS_CODE(FLEXCAN_MB_CODE_TX_ONCE)
                                          | FLEXCAN_MB_CS_LENGTH(msg.len) | FLEXCAN_MB_CS_SRR | FLEXCAN_MB_CS_IDE;
+    }
   } else {
-    FLEXCANb_MBn_CS(flexcanBase, buffer) = FLEXCAN_MB_CS_CODE(FLEXCAN_MB_CODE_TX_ONCE)
+    if(msg.rtr) {
+      FLEXCANb_MBn_CS(flexcanBase, buffer) = FLEXCAN_MB_CS_CODE(FLEXCAN_MB_CODE_TX_ONCE)
+                                         | FLEXCAN_MB_CS_LENGTH(msg.len) | FLEXCAN_MB_CS_RTR;
+    } else {
+      FLEXCANb_MBn_CS(flexcanBase, buffer) = FLEXCAN_MB_CS_CODE(FLEXCAN_MB_CODE_TX_ONCE)
                                          | FLEXCAN_MB_CS_LENGTH(msg.len);
+    }
   }
 
   return 1;

@@ -1,6 +1,6 @@
-##CANbus Library for Teensy 3.1, 3.2, 3.5 and 3.6
+## CANbus Library for Teensy 3.1, 3.2, 3.5 and 3.6
 
-###Introduction
+### Introduction
 FlexCAN is a serial communication driver for the CAN peripherial built into the Teensy CPUs. Versions 3.1, 3.2 and 3.5 of the board support single CAN0 controller while version 3.6 supports dual CAN0/CAN1 controllers.  The driver is organized in the Arduino library format.
 
 When the FlexCAN object is constructed on Teensy 3.1/3.2, Arduino pins Digital 3 and Digital 4 (or alternatively Digital 32 and Digital 25) are assigned to CAN functions TX and RX.
@@ -24,7 +24,7 @@ Note that CAN will normally require termination resistors.  These are located at
 
 Supported baud rates are 50000, 100000, 125000, 250000, 500000, and 1000000 bits per second.  If the baud rate is not specified it will default to 125000.
 
-###CAN Transceiver Options
+### CAN Transceiver Options
 Please add parts you are using successfully with Teensy 3.1 to this list.
 - TI SN65HVD230D on 3.3V (1MBPS)
 - TI SN65HVD232D / SN65HVD232QDQ1 on 3.3V (1MBPS)
@@ -32,7 +32,7 @@ Please add parts you are using successfully with Teensy 3.1 to this list.
 - Microchip MCP2551 on 5V (reported at 500KBPS)
 - Linear LT1796 on 5V (not speedtested)
 
-###Driver API
+### Driver API
 **FlexCAN(baud, id, txAlt, rxAlt)**
 Create the FlexCAN object. The table below describes each parameter together with allowed values. Defaults are marked **bold**. When a non-allowed value is used default will be taken instead.
 
@@ -60,7 +60,7 @@ Receive a frame into "message" if available.  **read()** will return 1 if a fram
 **available()**
 Returns 1 if at least one receive frame is waiting, or 0 if no frame is available.
 
-###Use of Optional RX Filtering
+### Use of Optional RX Filtering
 **begin(mask)**
 Enable the CAN to start actively participating on the CANbus.  Enable reception of all messages that fit the mask.  This is a global mask that applies to all the receive filters.
 
@@ -69,7 +69,7 @@ Set the receive filter selected by number, 0-7.  When using filters it is requir
 
 The mask and filter are **CAN_filter_t** type structures.
 
-###Caller Blocking Support
+### Caller Blocking Support
 Support has been included for wait / blocking in both the **read()** and **write()** calls.
 
 When the **CAN_message_t** field **timeout** is given, the **read()** and **write()** calls will wait if needed until the frame transfer can take place. The maximum wait for transfer is specified by **timeout** in milliseconds. If the call times out, it will return 0 as in the non-blocking case.
@@ -78,6 +78,6 @@ Setting the timeout field to 0 will make the calls non-blocking.
 
 The timeout monitoring mechanism calls **yield()** until a buffer is found or the timeout time is exceeded.
 
-###In-order Transmission
+### In-order Transmission
 Caller blocking can be used to **write()** frames guaranteed in-order to the bus. When caller blocking is selected for **write()** (non-zero timeout specified), a single hardware transmit buffer is used.
 
